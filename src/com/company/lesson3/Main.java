@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Main {
     static Random random = new Random();
     static Scanner sc = new Scanner(System.in);
+    public static final int TRY_COUNT = 3;
+    public static final int NUMBERS_RANGE = 10;
 
     public static void main(String[] args) {
         while (true) {
@@ -24,10 +26,10 @@ public class Main {
         do {
             int count = 0;
             int guess = -1;
-            int number = random.nextInt(10);
-            while (count < 3 && guess != number) {
+            int number = random.nextInt(NUMBERS_RANGE);
+            while (count < TRY_COUNT && guess != number) {
                 System.out.print(
-                        "Guess [" + (count + 1) + "] the number (0..9): ");
+                        "Guess [" + (count + 1) + "] the number (0.." + (NUMBERS_RANGE - 1) + "): \n");
                 try {
                     guess = sc.nextInt();
                     if (number == guess) {
@@ -42,7 +44,7 @@ public class Main {
                     sc.next();
                 }
             }
-            if (count == 3)
+            if (count == TRY_COUNT)
                 System.out.println("You lost!");
             System.out.print("Repeat the game?\n[1 - yes / 0 - no]: ");
         } while (sc.next().equals("1"));
